@@ -32,7 +32,9 @@
   "dependencies": {
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
+    "preact-material-components": "^1.4.3",
     "preact-router": "^2.5.5",
-    "preact-material-components": "^1.4.3"
+    "react-color": "^2.14.1",
+    "stackblur-canvas": "^2.1.0"
   }
 }
