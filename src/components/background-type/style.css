@@ -1,3 +1,15 @@
 .container {
-    display:flex
+  display: flex;
+}
+.selectWrapper {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
+.selectControl {
+  width: 200px;
+}
+.flexColumn{
+  display: flex;
+  flex-direction: column;
 }

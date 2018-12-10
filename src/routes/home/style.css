@@ -16,3 +16,8 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.imageSelect{
+	display: flex;
+	justify-content: center;
+}

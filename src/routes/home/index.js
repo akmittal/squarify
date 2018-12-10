@@ -4,22 +4,44 @@ import 'preact-material-components/Button/style.css';
 import style from './style';
 import ImageSelect from './../../components/image-select';
 import ImageCanvas from './../../components/image-canvas';
-import { Button } from 'preact-material-components/Button';
 import BackgroundType from '../../components/background-type';
 
 export default class Home extends Component {
-	fileChanged = (data) => {
+	state = {
+		bgConfig: {
+			type: 'SOLID',
+			color: '#fff',
+			radius: 50
+		}
+	};
+	fileChanged = data => {
 		this.setState({
 			fileData: data
 		});
-	}
+	};
+	backgroundConfigChanged = config => {
+		this.setState({
+			bgConfig: config
+		});
+	};
 	render() {
 		return (
 			<div class={`${style.home} ${style.container} page`}>
-				<ImageSelect onChange={this.fileChanged} />
-				<BackgroundType />
-				<div><ImageCanvas fileData={this.state.fileData}/></div>
-				<Button ripple primary raised> Download</Button>
+				<div class={`${style.imageSelect}`}>
+					<ImageSelect onChange={this.fileChanged} />
+				</div>
+				{this.state.fileData && (
+					<div>
+						<BackgroundType onChange={this.backgroundConfigChanged} />
+						<div>
+							<ImageCanvas
+								bgConfig={this.state.bgConfig}
+								fileData={this.state.fileData}
+							/>
+						</div>
+					
+					</div>
+				)}
 			</div>
 		);
 	}

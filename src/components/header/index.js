@@ -49,7 +49,7 @@ export default class Header extends Component {
 				}
 			}
 		);
-	}
+	};
 
 	render(props) {
 		console.log(props.selectedRoute);
@@ -63,18 +63,24 @@ export default class Header extends Component {
 							</TopAppBar.Icon>
 							<TopAppBar.Title>Squarefy</TopAppBar.Title>
 						</TopAppBar.Section>
-						<TopAppBar.Section align-end shrink-to-fit onClick={this.openSettings}>
+						<TopAppBar.Section
+							align-end
+							shrink-to-fit
+							onClick={this.openSettings}
+						>
 							<TopAppBar.Icon>settings</TopAppBar.Icon>
 						</TopAppBar.Section>
 					</TopAppBar.Row>
 				</TopAppBar>
 				<Drawer modal ref={this.drawerRef}>
 					<Drawer.DrawerContent>
-						<Drawer.DrawerItem selected={props.selectedRoute === '/'} onClick={this.goHome}>
+						<Drawer.DrawerItem
+							selected={props.selectedRoute === '/'}
+							onClick={this.goHome}
+						>
 							<List.ItemGraphic>home</List.ItemGraphic>
 							Home
 						</Drawer.DrawerItem>
-						
 					</Drawer.DrawerContent>
 				</Drawer>
 				<Dialog ref={this.dialogRef}>

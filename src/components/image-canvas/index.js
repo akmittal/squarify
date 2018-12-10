@@ -2,9 +2,16 @@ import { h, Component } from 'preact';
 import 'preact-material-components/Button/style.css';
 import 'preact-material-components/Theme/style.css';
 import * as StackBlur from 'stackblur-canvas';
-
+import style from './style.css';
+import { Button } from 'preact-material-components/Button';
 export default class ImageCanvas extends Component {
+	state = {
+		imageContent: ''
+	};
 	drawImage() {
+		if (!this.props.fileData) {
+			return;
+		}
 		let reader = new FileReader();
 		reader.onload = event => {
 			this.img = new Image();
@@ -53,7 +60,7 @@ export default class ImageCanvas extends Component {
 		this.ctx.fillStyle = color;
 		this.ctx.fill();
 	}
-	blurBackground() {
+	blurBackground(blurRadius) {
 		const isPortrait = this.img.width < this.img.height;
 
 		const scaleSize = isPortrait
@@ -90,7 +97,7 @@ export default class ImageCanvas extends Component {
 			0,
 			this.canvas.width,
 			this.canvas.width,
-			50
+			blurRadius
 		);
 	}
 	drawBackground() {
@@ -110,21 +117,58 @@ export default class ImageCanvas extends Component {
 	}
 	componentDidMount() {
 		this.ctx = this.canvas.getContext('2d');
+		this.drawImage();
 	}
 	componentDidUpdate() {
-		if (this.props.fileData) this.drawImage();
+		this.drawImage();
 	}
+	shouldComponentUpdate() {
+		this.drawImage();
+		return true;
+	}
+	handleDownload = evt => {
+		evt.preventDefault();
+		let dt = this.canvas.toDataURL('image/jpeg');
+		/* Change MIME type to trick the browser to downlaod the file instead of displaying it */
+		dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+
+		/* In addition to <a>'s "download" attribute, you can define HTTP-style headers */
+		console.log('Downloading', evt);
+		dt = dt.replace(
+			/^data:application\/octet-stream/,
+			'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=file.jpg'
+		);
+
+		const download = document.createElement('a');
+		download.href = dt;
+		download.download = 'image.jpg';
+		download.click();
+	};
 
 	render() {
 		return (
 			<div>
-				<canvas
-					height="600"
-					width="600"
+				<div class={`${style.center}`}>
+					<canvas
+						height="1000"
+						width="1000"
+						ref={elem => {
+							this.canvas = elem;
+						}}
+					/>
+				</div>
+				<div class={`${style.center}`}><Button
+					ripple
+					primary
+					raised
+					onClick={this.handleDownload}
 					ref={elem => {
-						this.canvas = elem;
+						this.downloadButton = elem;
 					}}
-				/>
+				>
+					Download
+				</Button>
+				</div>
 			</div>
 		);
 	}
