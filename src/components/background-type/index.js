@@ -114,22 +114,30 @@ class BackgroundType extends Component {
 							this.scrollingDlg = scrollingDlg;
 						}}
 					>
-						<Dialog.Header>Select Data</Dialog.Header>
+						<Dialog.Header>Change Value</Dialog.Header>
 						{this.state.MODAL_TO_SHOW === 'RADIUS' && (
-							<div><Slider
-								min={0}
-								step={1}
-								value={this.state.radius}
-								max={180}
-								discrete
-								onChange={this.handleSliderChange}
-							/></div>
+							<Dialog.Body>
+								<div class={`${style.center}`}>
+									<Slider
+										min={0}
+										step={1}
+										value={this.state.radius}
+										max={180}
+										discrete
+										onChange={this.handleSliderChange}
+									/>
+								</div>
+							</Dialog.Body>
 						)}
 						{this.state.MODAL_TO_SHOW === 'COLOR' && (
-							<SketchPicker
-								color={this.state.color}
-								onChangeComplete={this.handleChangeComplete}
-							/>
+							<Dialog.Body>
+								<div class={`${style.center}`}>
+									<SketchPicker
+										color={this.state.color}
+										onChangeComplete={this.handleChangeComplete}
+									/>
+								</div>
+							</Dialog.Body>
 						)}
 					</Dialog>
 				</div>
