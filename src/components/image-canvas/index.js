@@ -8,6 +8,11 @@ export default class ImageCanvas extends Component {
 	state = {
 		imageContent: ''
 	};
+	resizeCanvas = () => {
+		this.canvas.width = this.canvasElem.offsetWidth;
+		this.canvas.height = this.canvasElem.offsetWidth;
+	};
+
 	drawImage() {
 		if (!this.props.fileData) {
 			return;
@@ -109,7 +114,12 @@ export default class ImageCanvas extends Component {
 			this.blurBackground(bgConfig.radius);
 		}
 	}
-
+	componentWillMount() {
+		window.addEventListener('resize', () => {
+			this.resizeCanvas();
+			this.drawImage();
+		});
+	}
 	canvasToImage(canvas) {
 		let image = new Image();
 		image.src = canvas.toDataURL();
@@ -117,6 +127,7 @@ export default class ImageCanvas extends Component {
 	}
 	componentDidMount() {
 		this.ctx = this.canvas.getContext('2d');
+		this.resizeCanvas();
 		this.drawImage();
 	}
 	componentDidUpdate() {
@@ -148,7 +159,10 @@ export default class ImageCanvas extends Component {
 	render() {
 		return (
 			<div>
-				<div class={`${style.center}`}>
+				<div
+					ref={elem => (this.canvasElem = elem)}
+					class={`${style.center} ${style.resize}`}
+				>
 					<canvas
 						height="1000"
 						width="1000"
@@ -157,17 +171,18 @@ export default class ImageCanvas extends Component {
 						}}
 					/>
 				</div>
-				<div class={`${style.center}`}><Button
-					ripple
-					primary
-					raised
-					onClick={this.handleDownload}
-					ref={elem => {
-						this.downloadButton = elem;
-					}}
-				>
-					Download
-				</Button>
+				<div class={`${style.center} ${style.marginTop}`}>
+					<Button
+						ripple
+						primary
+						raised
+						onClick={this.handleDownload}
+						ref={elem => {
+							this.downloadButton = elem;
+						}}
+					>
+						Download
+					</Button>
 				</div>
 			</div>
 		);

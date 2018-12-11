@@ -16,10 +16,10 @@ import 'preact-material-components/Dialog/style.css';
 class BackgroundType extends Component {
 	static typeValues = ['BLUR', 'SOLID'];
 	state = {
-		chosenIndex: 2,
-		type: 'SOLID',
+		chosenIndex: 1,
+		type: 'BLUR',
 		color: '#fff',
-		radius: 40
+		radius: 50
 	};
 	showChangeRadius = () => {
 		this.setState(
@@ -45,7 +45,6 @@ class BackgroundType extends Component {
 		if (isNaN(evt.detail.value)) {
 			return;
 		}
-		console.log(evt.detail.value, 'aaaa');
 		this.setState({ radius: evt.detail.value }, () => {
 			this.emitChange();
 		});

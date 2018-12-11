@@ -1,9 +1,9 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+// import { Router } from 'preact-router';
 
 import Header from './header';
 import Home from '../routes/home';
-import NotFound from '../routes/404';
+// import NotFound from '../routes/404';
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 
@@ -22,10 +22,10 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Header selectedRoute={this.state.currentUrl} />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<NotFound default />
-				</Router>
+				{/* <Router onChange={this.handleRoute}> */}
+				<Home />
+				{/* <NotFound default /> */}
+				{/* </Router> */}
 			</div>
 		);
 	}

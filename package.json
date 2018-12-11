@@ -2,7 +2,7 @@
   "private": false,
   "name": "image-resize",
   "description": "Resize images to sqaure for whatsapp/Instagram without crop",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
@@ -27,12 +27,12 @@
     "eslint": "^4.5.0",
     "eslint-config-synacor": "^1.1.0",
     "if-env": "^1.0.0",
-    "preact-cli": "^2.0.0"
+    "preact-cli": "^2.2.1"
   },
   "dependencies": {
-    "preact": "^8.2.1",
+    "preact": "^8.2.2",
     "preact-compat": "^3.17.0",
-    "preact-material-components": "^1.4.3",
+    "preact-material-components": "^1.5.5",
     "preact-router": "^2.5.5",
     "react-color": "^2.14.1",
     "stackblur-canvas": "^2.1.0"

@@ -2,6 +2,7 @@
   display: flex;
 }
 .selectWrapper {
+  margin: 10px 0px;
   display: flex;
   justify-content: space-around;
   flex: 1;
@@ -9,7 +10,8 @@
 .selectControl {
   width: 200px;
 }
-.flexColumn{
+.flexColumn {
+  align-self: center;
   display: flex;
   flex-direction: column;
 }

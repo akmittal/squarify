@@ -9,7 +9,7 @@ import BackgroundType from '../../components/background-type';
 export default class Home extends Component {
 	state = {
 		bgConfig: {
-			type: 'SOLID',
+			type: 'BLUR',
 			color: '#fff',
 			radius: 50
 		}
