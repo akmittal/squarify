@@ -74,7 +74,7 @@ class BackgroundType extends Component {
 						<Select
 							class={`${style.selectControl}`}
 							outlined
-							hintText="Select an option"
+							hintText="Select background type"
 							value={type}
 							selectedIndex={this.state.chosenIndex}
 							onChange={e => {
