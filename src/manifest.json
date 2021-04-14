@@ -1,6 +1,6 @@
 {
-  "name": "image-resize",
-  "short_name": "image-resize",
+  "name": "Squarify: Convert Images to Square without cropping",
+  "short_name": "Squarify: Convert Images to Square",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
